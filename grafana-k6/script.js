@@ -1,7 +1,7 @@
 import http from 'k6/http';
-import { sleep } from 'k6';
+import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
 
 export default function () {
-  const res = http.get(`http://${__ENV.TARGET_HOST}/delay/1`);
-  sleep(1);
+  const delay = randomIntBetween(0, parseInt(__ENV.MAX_DELAY))
+  http.get(`http://${__ENV.TARGET_HOST}/delay/${delay}`);
 }
