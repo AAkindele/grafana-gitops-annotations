@@ -1,17 +1,25 @@
+# Title
+
 ```bash
 # create cluster
 k3d cluster create --config k3d.yaml
 
+# deploy prometheus
+kubectl create -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/bundle.yaml
+
+# deploy grafana
+# TODO
+
 # build sample app
 docker build \
-  --file ./grafana-k6-app/Dockerfile \
+  --file ./grafana-k6/Dockerfile \
   --tag k3d-registry.localhost:5000/k6-app:delay-v1 \
-  ./grafana-k6-app/
+  ./grafana-k6/
 
 # push image
 docker push k3d-registry.localhost:5000/k6-app:delay-v1
 
-# deploy
+# deploy sample apps
 kubectl apply -f deploy
 
 # clean up
