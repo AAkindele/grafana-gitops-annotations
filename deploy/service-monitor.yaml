@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-operator
+  labels:
+    env: demo
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-operator
+  endpoints:
+  - port: http
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus
+  labels:
+    env: demo
+spec:
+  selector:
+    matchLabels:
+      managed-by: prometheus-operator
+      operated-prometheus: "true"
+  endpoints:
+  - port: web
