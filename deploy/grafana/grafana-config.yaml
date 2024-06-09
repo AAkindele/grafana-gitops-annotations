@@ -51,7 +51,31 @@ data:
             "hide": true,
             "iconColor": "rgba(0, 211, 255, 1)",
             "name": "Annotations & Alerts",
+            "target": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [],
+              "type": "dashboard"
+            },
             "type": "dashboard"
+          },
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "grafana"
+            },
+            "enable": true,
+            "iconColor": "red",
+            "name": "Flux Events",
+            "target": {
+              "limit": 100,
+              "matchAny": true,
+              "refId": "Anno",
+              "tags": [
+                "flux"
+              ],
+              "type": "tags"
+            }
           }
         ]
       },
@@ -2084,7 +2108,7 @@ data:
         ]
       },
       "time": {
-        "from": "now-15m",
+        "from": "now-30m",
         "to": "now"
       },
       "timeRangeUpdatedDuringEditOrView": false,
