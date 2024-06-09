@@ -10,5 +10,9 @@ wget https://github.com/derailed/k9s/releases/download/v0.32.4/k9s_linux_amd64.d
 sudo apt install ./k9s_linux_amd64.deb
 rm ./k9s_linux_amd64.deb
 
-# add host entry for registry
-echo "127.0.0.1 k3d-registry.localhost" | sudo tee -a /etc/hosts
+# flux
+wget -q https://github.com/fluxcd/flux2/releases/download/v2.3.0/flux_2.3.0_linux_amd64.tar.gz
+tar -zxf flux_2.3.0_linux_amd64.tar.gz
+sudo mv flux /usr/local/bin/flux
+rm flux_2.3.0_linux_amd64.tar.gz
+# . <(flux completion bash)
