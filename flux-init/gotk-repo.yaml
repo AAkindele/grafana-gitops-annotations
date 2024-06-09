@@ -6,5 +6,5 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: aakindele/initial
+    branch: main
   url: https://github.com/AAkindele/grafana-gitops-annotations.git
