@@ -12,11 +12,11 @@ kubectl create -f https://raw.githubusercontent.com/prometheus-operator/promethe
 # build sample app
 docker build \
   --file ./grafana-k6/Dockerfile \
-  --tag k3d-registry.localhost:5000/k6-app:delay-v1 \
+  --tag k3d-registry.localhost:5000/k6-app \
   ./grafana-k6/
 
 # push image
-docker push k3d-registry.localhost:5000/k6-app:delay-v1
+docker push k3d-registry.localhost:5000/k6-app
 
 # deploy flux
 kubectl apply -f flux/gotk-components.yaml
