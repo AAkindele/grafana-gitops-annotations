@@ -24,17 +24,6 @@ docker push k3d-registry.localhost:5000/k6-app:delay-v1
 
 kubectl apply -f https://github.com/fluxcd/flux2/releases/download/v2.3.0/install.yaml
 
-# flux create source git flux-system \
-#  --url=https://github.com/AAkindele/grafana-gitops-annotations.git \
-#  --branch=main \
-#  --export > flux/flux-system/gotk-sync.yaml
-
-# flux create kustomization flux-system \
-#  --source=GitRepository/flux-system \
-#  --path="./flux" \
-#  --prune=true \
-#  --export >> flux/flux-system/gotk-sync.yaml
-
 ```
 
 ## Clean Up
