@@ -1,5 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-# deploy current directory
-- .
+- ./apps/go-httpbin.yaml
+- ./apps/grafana-config.yaml
+- ./apps/grafana-k6.yaml
+- ./apps/grafana.yaml
+- ./apps/prometheus.yaml
+- ./apps/service-monitor.yaml
