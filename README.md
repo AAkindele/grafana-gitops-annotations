@@ -22,8 +22,6 @@ docker push k3d-registry.localhost:5000/k6-app
 kubectl apply -f flux/gotk-components.yaml
 kubectl apply -f flux/gotk-repo.yaml
 kubectl apply -f flux/gotk-sync.yaml
-
-# deploy applications
 kubectl apply -f deploy/flux-kustomization.yaml
 
 ```

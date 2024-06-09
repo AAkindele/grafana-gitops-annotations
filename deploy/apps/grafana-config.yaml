@@ -60,7 +60,6 @@ data:
       "fiscalYearStartMonth": 0,
       "gnetId": 19665,
       "graphTooltip": 2,
-      "id": 1,
       "links": [
         {
           "asDropdown": false,
@@ -891,7 +890,8 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -930,6 +930,7 @@ data:
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "single",
               "sort": "none"
             }
@@ -1066,7 +1067,8 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1150,6 +1152,7 @@ data:
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "single",
               "sort": "none"
             }
@@ -1246,7 +1249,8 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1345,6 +1349,7 @@ data:
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "single",
               "sort": "none"
             }
@@ -1415,7 +1420,8 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -1528,6 +1534,7 @@ data:
             "frameIndex": 2,
             "showHeader": true
           },
+          "pluginVersion": "11.0.0",
           "targets": [
             {
               "datasource": {
@@ -1701,7 +1708,8 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -1776,6 +1784,7 @@ data:
               }
             ]
           },
+          "pluginVersion": "11.0.0",
           "targets": [
             {
               "datasource": {
@@ -1904,7 +1913,8 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1927,6 +1937,7 @@ data:
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "single",
               "sort": "none"
             }
@@ -1969,10 +1980,11 @@ data:
             "content": "### Visualize other k6 results  \n\nAt the top of the dashboard, click `Add` and select `Visualization` from the dropdown menu. Choose the visualization type and input the PromQL queries for the `k6_` metric(s).\n\nAlternatively, click on the `Explore` icon on the menu bar and input the queries for the `k6_` metric(s). From `Explore`, you can add new Panels to this dashboard. \n\nNote that all <a href=\"https://k6.io/docs/using-k6/metrics/\" target=\"_blank\">k6 metrics</a> are prefixed with the `k6_` namespace when sent to Prometheus.",
             "mode": "markdown"
           },
+          "pluginVersion": "11.0.0",
           "type": "text"
         }
       ],
-      "refresh": "",
+      "refresh": "5s",
       "schemaVersion": 39,
       "tags": [
         "prometheus",
@@ -2072,7 +2084,7 @@ data:
         ]
       },
       "time": {
-        "from": "now-5m",
+        "from": "now-15m",
         "to": "now"
       },
       "timeRangeUpdatedDuringEditOrView": false,
