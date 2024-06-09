@@ -2,6 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: prometheus-operator
+  namespace: default
   labels:
     env: demo
 spec:
@@ -17,6 +18,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: prometheus
+  namespace: default
   labels:
     env: demo
 spec:

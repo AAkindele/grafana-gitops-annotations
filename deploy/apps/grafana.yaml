@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: grafana-pvc
+  namespace: default
 spec:
   accessModes:
     - ReadWriteOnce
@@ -14,9 +15,10 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: grafana
+  namespace: default
   labels:
     app: grafana
-  name: grafana
 spec:
   selector:
     matchLabels:
@@ -92,6 +94,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: grafana
+  namespace: default
 spec:
   ports:
     - port: 3000
