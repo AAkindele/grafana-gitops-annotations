@@ -22,7 +22,35 @@ docker push k3d-registry.localhost:5000/k6-app
 kubectl apply -f flux-init/gotk-components.yaml
 kubectl apply -f flux-init/gotk-repo.yaml
 kubectl apply -f flux-init/gotk-sync.yaml
-kubectl apply -f deploy/flux-kustomization.yaml
+
+# deploy applications
+kubectl apply -f deploy/apps/flux-kustomization.yaml
+
+# wait till pods are up and running
+kubectl get pods -a
+
+# connect to grafana
+kubectl port-forward service/grafana 3000:3000
+
+# Go to http://localhost:3000 in browser
+```
+
+## Setup Grafana annotations from Flux events
+
+```bash
+
+# create Service Account API token in Grafana UI with "Editor" role
+# https://grafana.com/docs/grafana/latest/administration/service-accounts/
+
+# set token variable
+TOKEN=<service account api token>
+
+# create k8s secret for the token
+kubectl create secret generic grafana-token \
+  --namespace flux-system \
+  --from-literal token="${TOKEN}"
+
+# deploy flux notifications
 
 ```
 
