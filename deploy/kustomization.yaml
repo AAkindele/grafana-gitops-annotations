@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ./app/go-httpbin.yaml
+- ./app/grafana-k6.yaml
+- ./flux-notifications/alert.yaml
+- ./grafana/grafana-config.yaml
+- ./grafana/grafana.yaml
+- ./prometheus/prometheus.yaml
+- ./prometheus/service-monitor.yaml

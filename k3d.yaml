@@ -1,0 +1,19 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: grafana-gitops-annotations
+servers: 1
+agents: 1
+options:
+  k3s:
+    extraArgs:
+      - arg: "--disable=traefik"
+        nodeFilters:
+          - "server:*"
+      - arg: "--disable=servicelb"
+        nodeFilters:
+          - "server:*"
+registries:
+  create:
+    name: k3d-registry.localhost
+    hostPort: "5000"
