@@ -19,7 +19,7 @@ spec:
         - name: "TARGET_HOST"
           value: "go-httpbin.default:8080"
         - name: "MAX_DELAY"
-          value: "1"
+          value: "3"
         - name: "K6_PROMETHEUS_RW_SERVER_URL"
           value: http://prometheus-operated.default:9090/api/v1/write
         imagePullPolicy: Always

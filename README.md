@@ -1,5 +1,7 @@
 # Title
 
+TODO: prereq: fork repo and update `url` field in `flux-init/gotk-repo.yaml`.
+
 ## Setup
 
 ```bash
