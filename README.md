@@ -19,10 +19,12 @@ docker build \
 docker push k3d-registry.localhost:5000/k6-app:delay-v1
 
 # deploy flux
-# https://github.com/fluxcd/flux2/discussions/1499
-# https://fluxcd.io/flux/migration/flux-v1-migration/#flux-read-only-mode
+kubectl apply -f flux/gotk-components.yaml
+kubectl apply -f flux/gotk-repo.yaml
+kubectl apply -f flux/gotk-sync.yaml
 
-kubectl apply -f https://github.com/fluxcd/flux2/releases/download/v2.3.0/install.yaml
+# deploy applications
+kubectl apply -f deploy/flux-kustomization.yaml
 
 ```
 
