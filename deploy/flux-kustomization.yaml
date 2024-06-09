@@ -9,3 +9,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: grafana-gitops-annotations
+    namespace: flux-system
