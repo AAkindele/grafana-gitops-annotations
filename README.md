@@ -24,7 +24,7 @@ kubectl apply -f flux-init/gotk-repo.yaml
 kubectl apply -f flux-init/gotk-sync.yaml
 
 # deploy applications
-kubectl apply -f deploy/apps/flux-kustomization.yaml
+kubectl apply -f deploy/flux-kustomization.yaml
 
 # wait till pods are up and running
 kubectl get pods -a
@@ -47,10 +47,7 @@ TOKEN=<service account api token>
 
 # create k8s secret for the token
 kubectl create secret generic grafana-token \
-  --namespace flux-system \
   --from-literal token="${TOKEN}"
-
-# deploy flux notifications
 
 ```
 

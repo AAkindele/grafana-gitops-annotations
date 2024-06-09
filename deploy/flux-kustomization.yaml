@@ -4,7 +4,7 @@ metadata:
   name: deploy-apps
 spec:
   interval: 1m0s
-  path: ./deploy/apps
+  path: ./deploy
   prune: true
   sourceRef:
     kind: GitRepository
