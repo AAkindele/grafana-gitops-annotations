@@ -1,24 +1,59 @@
-# Title
+# Walkthrough of Grafana Annotations for Flux Events
 
-TODO: short description
+This is a sample showing how to setup automated Grafana Annotations from Flux Events, including instructions for setting up a local demo environment.
+
+## Purpose
+
+Grafana annotations allow users to add crucial context to their dashboards. By marking significant events directly on the dashboard, users can easily compare these events with observed trend changes. This feature can significantly reduce troubleshooting time, as it enables users to correlate events with multiple trends simultaneously.
+
+This is particularly valuable in continuous integration and deployment scenarios, where changes occur automatically and frequently. For instance, annotating an application deployment on a dashboard can help users quickly determine whether observed trend changes are likely related to that specific deployment.
+
+In this walkthrough, we use Flux as an example to demonstrate this functionality.
 
 ## Setup
 
-The repository has a devcontainer that is configured with the tools required to follow this sample. To follow along without the devcontainer, install the tools listed below.
+A devcontainer is included, configured with the tools required to follow this sample. To follow along without the devcontainer, install the tools listed below.
 
 - Docker - <https://docs.docker.com/get-docker/>
 - k3d - <https://k3d.io/#installation>
 - kubectl - <https://kubernetes.io/docs/tasks/tools/#kubectl>
 
-TODO: prereq: fork repo and update `url` field in `flux-init/gotk-repo.yaml`.
+The walkthrough requires a git push to trigger Flux events. Fork the repository and update  the `url` field in `flux-init/gotk-repo.yaml`.
 
-## Purpose
-
-TODO: longer description of the purpose of the repo
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+...
+  # change this to your fork
+  url: https://github.com/AAkindele/grafana-gitops-annotations.git
+```
 
 ## Walkthrough
 
-TODO: cleanup and provide context for commands
+TODO: short description of context. include simple mermaid diagram
+
+### Create Local K8s Cluster
+
+### Build and Push Sample App
+
+### Deploy Prometheus Operator
+
+### Setup Flux for GitOps
+
+### Setup Flux to Deploy Sample Apps
+
+TODO: describe the different components that are needed for this to work
+- flux notification alert
+- flux notification provider
+- grafana dashboard annotation configuration with screenshots
+
+### Create Secret for Grafana Service Account Token
+
+TODO: describe process and include screenshots
+
+### Trigger a Flux Event
+
+TODO: include before and after screenshots
 
 ```bash
 
@@ -67,8 +102,16 @@ kubectl create secret generic grafana-token \
 
 ## Clean Up
 
+Delete the local Kubernetes cluster to clean up.
+
 ```bash
 
 k3d cluster delete --config k3d.yaml
 
 ```
+
+## References
+
+- Flux documentation for Grafana Annotations: <https://fluxcd.io/flux/monitoring/alerts/#grafana-annotations>
+- Flux Grafana Notitication Provider: <https://fluxcd.io/flux/components/notification/providers/#grafana>
+- Grafana Annotations API: <https://grafana.com/docs/grafana/latest/developers/http_api/annotations/>
