@@ -30,7 +30,40 @@ kind: GitRepository
 
 ## Walkthrough
 
-TODO: short description of context. include simple mermaid diagram
+```mermaid
+sequenceDiagram
+    participant client as Sample client app
+    participant server as Sample server app
+    participant prom as Prometheus
+    participant gr as Grafana
+    participant flux as Flux
+    participant git as Git Repository
+
+    loop
+        client ->> server: HTTP GET request;
+        server -->> client: ;
+
+        client ->> prom: Prometheus remote<br>write metrics;
+        prom -->> client: ;
+    end
+
+    gr ->> prom: query metrics<br>for dashboard;
+    prom -->> gr: ;
+
+    loop
+        flux ->> git: poll for changes;
+        git -->> flux: ;
+
+        flux ->> flux: apply changes<br>to k8s cluster;
+
+        flux ->> gr: create annotation<br>from events;
+        gr -->> flux: ;
+    end
+```
+
+For this walkthrough, we are using a local k3d Kubernetes cluster set up with Prometheus, Grafana, and two sample applications. These applications are primarily used to generate metrics for our Grafana dashboard. Flux will be responsible for deploying application changes to the cluster.
+
+The purpose of this setup is to simulate a standard development lifecycle that can benefit from automated annotations. During the walkthrough, we'll modify the application deployment through Flux and observe the Grafana dashboard for any changes in the monitored signals.
 
 ### Create Local K8s Cluster
 
