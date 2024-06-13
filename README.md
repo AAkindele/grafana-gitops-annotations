@@ -245,11 +245,11 @@ flux reconcile kustomization deploy-apps -n default
 
 View the results in the `k6 Prometheus` Grafana dashboard at <http://localhost:3000/dashboards>.
 
-Without annotations, it is clean something changes with the application's behavior, but the reason is not immediately obvious.
+Without annotations, it is clear something changed with the application's behavior, but the reason is not immediately obvious.
 
 ![Dashboard panel with Flux Events annotation disabled](./images/panel-annotations-disabled.png)
 
-With the Flux Events annotation enable, the dashboard now shows when Flux made changes to the application. This provides valuable context to help with troubleshooting potential anomalies.
+With the Flux Events annotation enabled, the dashboard now shows when Flux made changes to the application. This provides valuable context to help with troubleshooting potential anomalies.
 
 ![Dashboard panel with Flux Events annotation enabled](./images/panel-annotations-enabled.png)
 
