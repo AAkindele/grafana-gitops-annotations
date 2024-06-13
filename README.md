@@ -73,9 +73,7 @@ The purpose of this setup is to simulate a standard development lifecycle that c
 Create a K3d Kubernetes cluster along with local container registry.
 
 ```bash
-
 k3d cluster create --config k3d.yaml
-
 ```
 
 ### Build and Push Sample Application
@@ -83,7 +81,6 @@ k3d cluster create --config k3d.yaml
 This sample application is a Grafana K6 instance running a simple script. It is easy to configure and allows us to generate metrics for the Grafana dashboard we'll use later for annotations.
 
 ```bash
-
 # build sample app
 docker build \
   --file ./grafana-k6/Dockerfile \
@@ -92,7 +89,6 @@ docker build \
 
 # push image
 docker push k3d-registry.localhost:5000/k6-app
-
 ```
 
 ### Deploy Prometheus Operator
@@ -100,9 +96,7 @@ docker push k3d-registry.localhost:5000/k6-app
 The Prometheus Operator manages the deployment of Prometheus.
 
 ```bash
-
 kubectl create -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.74.0/bundle.yaml
-
 ```
 
 ### Setup Flux for GitOps
@@ -110,11 +104,9 @@ kubectl create -f https://raw.githubusercontent.com/prometheus-operator/promethe
 Remember to update the `url` and `branch` fields in `flux-init/gotk-repo.yaml` to your fork and branch. We'll push changes to the sample application later in the walkthrough for Flux to deploy.
 
 ```bash
-
 kubectl apply -f flux-init/gotk-components.yaml
 kubectl apply -f flux-init/gotk-repo.yaml
 kubectl apply -f flux-init/gotk-sync.yaml
-
 ```
 
 ### Setup Flux to Deploy Sample Applications
@@ -122,9 +114,7 @@ kubectl apply -f flux-init/gotk-sync.yaml
 Apply the Kustomization for deploying the rest of the applications to the cluster. Flux will handle the rest.
 
 ```bash
-
 kubectl apply -f deploy/flux-kustomization.yaml
-
 ```
 
 ### How Automated Annotations are Configured
@@ -168,7 +158,7 @@ There is a toggle for displaying the Flux events.
 
 ![Grafana application Dashboard filters](./images/grafana-dashboard-filters.png)
 
-For the annotions setting, the data source is set to Grafana.
+For the annotations setting, the data source is set to Grafana.
 
 ![Grafana application Dashboard annotation settings](./images/grafana-annotation-settings-1.png)
 
@@ -181,9 +171,7 @@ For this specific annotation, filter by annotations tagged with `flux`, which is
 Wait till pods are up and running.
 
 ```bash
-
 kubectl get pods -A
-
 ```
 
 Example output:
@@ -207,9 +195,7 @@ default       grafana-5d457b4996-lwl6m                   1/1     Running   0    
 Connect to the Grafana instance by port forwarding to the Kubernetes Service port for Grafana.
 
 ```bash
-
 kubectl port-forward service/grafana 3000:3000
-
 ```
 
 Go to <http://localhost:3000> in browser and login to Grafana. The default username and password is `admin`.
@@ -227,7 +213,6 @@ Go to <http://localhost:3000/org/serviceaccounts/create> in your browser to crea
 Then create a token using the `Add service account token` button.
 
 ```bash
-
 # create Service Account API token in Grafana UI with "Editor" role
 # https://grafana.com/docs/grafana/latest/administration/service-accounts/
 
@@ -237,7 +222,6 @@ TOKEN=<service account api token>
 # create k8s secret for the token
 kubectl create secret generic grafana-token \
   --from-literal token="${TOKEN}"
-
 ```
 
 ### Trigger a Flux Event
@@ -255,10 +239,8 @@ Commit the changes to git and push. After a minute or two, the changes will be d
 To force immediate changes, use the Flux CLI to reconcile the new changes.
 
 ```bash
-
 flux reconcile source git grafana-gitops-annotations
 flux reconcile kustomization deploy-apps -n default
-
 ```
 
 View the results in the `k6 Prometheus` Grafana dashboard at <http://localhost:3000/dashboards>.
@@ -276,13 +258,11 @@ With the Flux Events annotation enable, the dashboard now shows when Flux made c
 Delete the local Kubernetes cluster to clean up.
 
 ```bash
-
 k3d cluster delete --config k3d.yaml
-
 ```
 
 ## References
 
 - Flux documentation for Grafana Annotations: <https://fluxcd.io/flux/monitoring/alerts/#grafana-annotations>
-- Flux Grafana Notitication Provider: <https://fluxcd.io/flux/components/notification/providers/#grafana>
+- Flux Grafana Notification Provider: <https://fluxcd.io/flux/components/notification/providers/#grafana>
 - Grafana Annotations API: <https://grafana.com/docs/grafana/latest/developers/http_api/annotations/>
